@@ -15,7 +15,7 @@ class UsrNme(pygame.sprite.Sprite):
     def update(self):
         self.surf.fill((0, 0, 0, 0))
 
-        username = 'Josh Blob'
+        username = userState.currentUser.username
 
         text = self.font.render(username, True, (255, 255, 255))
 
