@@ -4,6 +4,7 @@ from constant import(
 SCREENWIDTH,
 SCREENHEIGHT
 )
+import userState
 
 class UsrNme(pygame.sprite.Sprite):
     def __init__(self):
@@ -14,12 +15,12 @@ class UsrNme(pygame.sprite.Sprite):
 
     def update(self):
         self.surf.fill((0, 0, 0, 0))
+        if userState.currentUser is not None:
+            username = userState.currentUser.username
 
-        username = userState.currentUser.username
+            text = self.font.render(username, True, (255, 255, 255))
 
-        text = self.font.render(username, True, (255, 255, 255))
-
-        text_rect = text.get_rect(
-            midleft=(0, self.surf.get_height() / 2)
-        )
-        self.surf.blit(text, text_rect)
+            text_rect = text.get_rect(
+                midleft=(0, self.surf.get_height() / 2)
+            )
+            self.surf.blit(text, text_rect)

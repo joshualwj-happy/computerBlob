@@ -66,7 +66,7 @@ main_home_sprites.add(TaskBarHome)
 
 #systemy staty
 # current_state = SystemStateEnum.STURTUPLOADINGSCREEN
-current_state = SystemStateEnum.WINDOWSHOMESCREEN
+current_state = SystemStateEnum.STURTUPLOADINGSCREEN
 
 #backgrnd images
 lock_screen_background = pygame.image.load("globasset/lockbacko.jpg").convert()

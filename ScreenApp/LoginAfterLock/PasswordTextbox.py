@@ -3,6 +3,8 @@ from constant import (
 SCREENWIDTH,
 SCREENHEIGHT
 )
+from user import WindowsUser
+import userState
 
 
 class PasswordInputSprite(pygame.sprite.Sprite):
@@ -47,15 +49,19 @@ class PasswordInputSprite(pygame.sprite.Sprite):
         self.surf.blit(text_surf,(10,(35 - text_surf.get_height()) // 2))
         eye_icon = self.eye_open if self.show_password else self.eye_close
         self.surf.blit(eye_icon, self.eye_rect)
+
     def handleTypeEvent(self, event):
         if event.type == pygame.KEYDOWN and self.active:
             if event.key == pygame.K_BACKSPACE:
                 self.text = self.text[:-1]
             elif event.key == pygame.K_RETURN:
-                userPassword = self.checkPassword()
+                user = self.getUserCredentiels
+                userPassword = user.password
+                userPassword = self.text
                 return userPassword == self.text
             else:
                 self.text += event.unicode
+
     def handleClickEvent(self, event):
         if event.type == pygame.MOUSEBUTTONDOWN:
             local_pos = (
@@ -74,9 +80,11 @@ class PasswordInputSprite(pygame.sprite.Sprite):
 
 
 
-    def checkPassword(self):
+    def getUserCredentiels(self):
         credentielFile = open("DataBase/Credentiels.txt", "r")
         userCredentiels = credentielFile.readlines()
         userInfo = userCredentiels[0]
-        username, userID, Password = userInfo.split("|")
-        return Password
+        username, userId, password = userInfo.split("|")
+        user = WindowsUser(userId, username, password)
+        userState.current_user = user
+        return user
