@@ -55,9 +55,8 @@ class PasswordInputSprite(pygame.sprite.Sprite):
             if event.key == pygame.K_BACKSPACE:
                 self.text = self.text[:-1]
             elif event.key == pygame.K_RETURN:
-                user = self.getUserCredentiels
+                user = self.getUserCredentiels()
                 userPassword = user.password
-                userPassword = self.text
                 return userPassword == self.text
             else:
                 self.text += event.unicode
@@ -86,5 +85,5 @@ class PasswordInputSprite(pygame.sprite.Sprite):
         userInfo = userCredentiels[0]
         username, userId, password = userInfo.split("|")
         user = WindowsUser(userId, username, password)
-        userState.current_user = user
+        userState.currentUser = user
         return user

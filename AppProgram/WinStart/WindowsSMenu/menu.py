@@ -31,6 +31,13 @@ class thePopup(pygame.sprite.Sprite):
 
             self.footer = theFooter()
 
+
+            self.update()
+
+        def update(self):
+            self.footer.update()
+            width1 = SCREENWIDTH - 650
+            height1 = SCREENHEIGHT - 100
             footer_rect = self.footer.surf.get_rect(
                 midbottom=(width1 / 2, height1)
             )

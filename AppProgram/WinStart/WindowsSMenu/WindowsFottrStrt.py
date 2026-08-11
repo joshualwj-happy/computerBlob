@@ -12,7 +12,7 @@ class theFooter(pygame.sprite.Sprite):
     def __init__(self):
         super(theFooter, self).__init__()
         width1 = SCREENWIDTH - 650
-        height1 = SCREENHEIGHT - 730
+        height1 = SCREENHEIGHT - 650
         self.surf = pygame.Surface((width1, height1), pygame.SRCALPHA)
         self.surf.fill((255, 0, 0, 0))
         pygame.draw.rect(
@@ -34,5 +34,14 @@ class theFooter(pygame.sprite.Sprite):
 
         theGroup_rect = self.theGroup.surf.get_rect(
             midleft=(50, height1 / 2)
+        )
+        self.surf.blit(self.theGroup.surf, theGroup_rect)
+
+    def update(self):
+        self.theGroup.update()
+
+        height = SCREENHEIGHT - 730
+        theGroup_rect = self.theGroup.surf.get_rect(
+            midleft=(50, height / 2)
         )
         self.surf.blit(self.theGroup.surf, theGroup_rect)

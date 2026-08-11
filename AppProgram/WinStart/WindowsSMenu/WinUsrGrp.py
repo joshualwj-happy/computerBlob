@@ -72,6 +72,7 @@ class theGroup(pygame.sprite.Sprite):
         self.render_children()
 
     def render_children(self):
+        self.userNme.update()
         width, height = self.surf.get_size()
 
         userIco_rect = self.userIco.surf.get_rect(

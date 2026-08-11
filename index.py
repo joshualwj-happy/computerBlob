@@ -32,6 +32,7 @@ from ScreenApp.MainHomeScreen.TaskBar import TaskBarSprite
 from AppProgram.WinStart.Button import WinButton
 from AppProgram.fileExplore.button import FileExplorerB
 from AppProgram.WinStart.WindowsSMenu.menu import thePopup
+from AppProgram.fileExplore.fexplorerMenu import FexplorerPopup
 
 #sprite grope
 ButtonWindows = WinButton()
@@ -61,8 +62,14 @@ main_login_sprites.add(usrico, passtextbox)
 TaskBarHome = TaskBarSprite(taskbar_sprites)
 WinMenuStart = thePopup()
 
+FexplorerWindow = FexplorerPopup()
+
 main_home_sprites = pygame.sprite.Group()
 main_home_sprites.add(TaskBarHome)
+
+WindowsStartScreen = thePopup()
+windows_start_sprites = pygame.sprite.Group()
+windows_start_sprites.add(WindowsStartScreen)
 
 #systemy staty
 # current_state = SystemStateEnum.STURTUPLOADINGSCREEN
@@ -105,6 +112,12 @@ while running:
                 elif WinMenuStart.active:
                     if not WinMenuStart.rect.collidepoint(event.pos):
                         WinMenuStart.active = False
+                #file explorer
+                if Explorerf.handleClickEvent(event, TaskBarHome.rect):
+                    FexplorerWindow.active = not FexplorerWindow.active
+                elif FexplorerWindow.active:
+                    if not FexplorerWindow.rect.collidepoint(event.pos):
+                        FexplorerWindow.active = False
     if current_state == SystemStateEnum.STURTUPLOADINGSCREEN:
         #sprite update
         Sturtup_Loading_Sprites.update()
@@ -136,5 +149,13 @@ while running:
             screen.blit(entity.surf, entity.rect)
 
         if WinMenuStart.active:
-            screen.blit(WinMenuStart.surf, WinMenuStart.rect)
+            screen.blit(WinMenuStart.surf,
+            WinMenuStart.rect)
+            WinMenuStart.update()
+
+        if FexplorerWindow.active:
+            screen.blit(FexplorerWindow.surf,
+            FexplorerWindow.rect)
+            FexplorerWindow.update()
+
     pygame.display.flip()

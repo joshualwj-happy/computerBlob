@@ -14,3 +14,15 @@ class FileExplorerB(pygame.sprite.Sprite):
             midleft=(SCREENWIDTH / 2 - 143, 30)
 
         )
+
+    def handleClickEvent(self, event, parent_rect):
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            local_pos = (
+                event.pos[0] - parent_rect.x,
+                event.pos[1] - parent_rect.y
+            )
+
+            if self.rect.collidepoint(local_pos):
+                return True
+
+        return False
