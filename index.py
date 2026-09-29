@@ -73,7 +73,7 @@ windows_start_sprites.add(WindowsStartScreen)
 
 #systemy staty
 # current_state = SystemStateEnum.STURTUPLOADINGSCREEN
-current_state = SystemStateEnum.STURTUPLOADINGSCREEN
+current_state = SystemStateEnum.WINDOWSHOMESCREEN
 
 #backgrnd images
 lock_screen_background = pygame.image.load("globasset/lockbacko.jpg").convert()
@@ -115,9 +115,14 @@ while running:
                 #file explorer
                 if Explorerf.handleClickEvent(event, TaskBarHome.rect):
                     FexplorerWindow.active = not FexplorerWindow.active
+                    FexplorerWindow.TopMenu.active = 1
                 elif FexplorerWindow.active:
                     if not FexplorerWindow.rect.collidepoint(event.pos):
                         FexplorerWindow.active = False
+
+                if FexplorerWindow.active:
+                        if FexplorerWindow.TopMenu.closeButton.handleClickEvent(event, FexplorerWindow.rect):
+                            FexplorerWindow.active = False
     if current_state == SystemStateEnum.STURTUPLOADINGSCREEN:
         #sprite update
         Sturtup_Loading_Sprites.update()
@@ -157,5 +162,8 @@ while running:
             screen.blit(FexplorerWindow.surf,
             FexplorerWindow.rect)
             FexplorerWindow.update()
+
+
+        
 
     pygame.display.flip()
