@@ -20,6 +20,28 @@ class UTB(pygame.sprite.Sprite):
             border_radius=0
         )
 
-        self.closeButton = CloseBSprite()
-        self.minimizeButton = MinimizeBSprite()
-        self.fullSButton = FullSBSprite()
+        self.active = 1
+
+        self.closeButton = CloseBSprite(self.height, self)
+        self.minimizeButton = MinimizeBSprite(self.height)
+        self.fullSButton = FullSBSprite(self.height)
+        
+        closebutton_rect = self.closeButton.surf.get_rect(
+            midright=(self.width - 15, self.height / 2)
+        )
+        self.surf.blit(self.closeButton.surf, closebutton_rect)
+
+        minimizebutton_rect = self.minimizeButton.surf.get_rect(
+            midright=(self.width - 70, self.height / 2)
+        )
+        self.surf.blit(self.minimizeButton.surf, minimizebutton_rect)
+
+        fullscreenbutton_rect = self.fullSButton.surf.get_rect(
+            midright=(self.width - 125, self.height / 2)
+        )
+        self.surf.blit(self.fullSButton.surf, fullscreenbutton_rect)
+        
+        
+                
+
+    

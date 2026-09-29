@@ -1,9 +1,10 @@
 import pygame
 
-from constant import (
+from constant import(
     SCREENWIDTH,
     SCREENHEIGHT
 )
+
 from AppProgram.Utility.UniversalTBar import UTB
 
 class FexplorerPopup(pygame.sprite.Sprite):
@@ -25,7 +26,7 @@ class FexplorerPopup(pygame.sprite.Sprite):
                 midbottom=(SCREENWIDTH / 2, SCREENHEIGHT - 65)
 
             )
-            self.active = False
+            self.active = 0
 
             self.TopMenu = UTB(self.width1)
             self.update()
@@ -38,5 +39,5 @@ class FexplorerPopup(pygame.sprite.Sprite):
                 (0, 0, self.width1, self.height1)
 
             )
-
-            self.surf.blit(self.TopMenu.surf, (0, 0))
+            if self.TopMenu.active == 1:
+                self.surf.blit(self.TopMenu.surf, (0, 0))     
